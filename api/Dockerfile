@@ -1,8 +1,8 @@
-FROM mhart/alpine-node:8.11.4
+FROM node:10-alpine
 
 WORKDIR /api 
 
-COPY package*.json .
+COPY package*.json ./
 
 RUN npm install
 

@@ -8,7 +8,9 @@ router.get("/", (req, res) => {
     res.send(databaseConnection);
 });
 
-mongoose.connect("mongodb://mongodb:27017/test");
+mongoose.connect("mongodb://mongodb:27017/test", {
+    useNewUrlParser: true
+});
 
 mongoose.connection.on("error", error => {
     console.log("Database connection error:", error);
