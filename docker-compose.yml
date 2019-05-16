@@ -9,10 +9,11 @@ services:
     volumes:
       - ./client:/client
       - /client/node_modules
-    links:
+    depends_on:
       - api
     networks:
       - webappnetwork
+    command: ["npm", "start"]
   
   api:
     build: ./api
@@ -26,11 +27,11 @@ services:
       - mongodb
     networks:
       - webappnetwork
+    command: ["sh", "wait.sh", "mongodb:27017", "npm", "start" ]
 
   mongodb:
     image: mongo
     restart: always
-    container_name: mongodb
     volumes:
       - ./data/db:/data/db
     ports:
