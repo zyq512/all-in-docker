@@ -8,13 +8,13 @@ Support both development and production environment.
   
 # Build And Run
 ## build image
-* development: `docker-compose build`
+* development: `docker-compose -f docker-compose.dev.yml build`
 * production: `docker-compose -f docker-compose.prod.yml build`
 ## start container
-* development: `docker-compose up`
+* development: `docker-compose -f docker-compose.dev.yml up`
 * production: `docker-compose -f docker-compose.prod.yml up`
 ## stop container
-* development: `docker-compose down`
+* development: `docker-compose -f docker-compose.dev.yml down`
 * production: `docker-compose -f docker-compose.prod.yml down`
 
 
