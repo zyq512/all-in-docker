@@ -26,6 +26,7 @@ services:
     restart: always
     ports:
       - "9000:9000"
+      - "9229:9229"
     volumes:
       - ./api:/api
       - /api/node_modules
