@@ -19,6 +19,8 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
+      args:
+        - node_env=product
     restart: always
     ports:
       - "9000:9000"
@@ -29,7 +31,7 @@ services:
       - mongodb
     networks:
       - webappnetwork
-    command: ["sh", "wait.sh", "mongodb:27017", "npm", "start"]
+    command: ["sh", "wait.sh", "mongodb:27017", "npm", "run", "start:prod" ]
 
   mongodb:
     image: mongo

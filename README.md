@@ -1,5 +1,6 @@
 # Description
-This is a project includes frontend, backend, db and all three run in docker.
+This is a project includes frontend, backend, db and all three run in docker.<br>
+Support both development and production environment.
 
 * frontend: react
 * backend: nodejs
@@ -7,11 +8,14 @@ This is a project includes frontend, backend, db and all three run in docker.
   
 # Build And Run
 ## build image
-`docker-compose build`
+* development: `docker-compose build`
+* production: `docker-compose -f docker-compose.prod.yml build`
 ## start container
-`docker-compose up`
+* development: `docker-compose up`
+* production: `docker-compose -f docker-compose.prod.yml up`
 ## stop container
-`docker-compose down`
+* development: `docker-compose down`
+* production: `docker-compose -f docker-compose.prod.yml down`
 
 
 # Lessons Learned
