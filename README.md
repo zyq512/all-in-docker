@@ -8,16 +8,20 @@ Support both development and production environment.
   
 # Build And Run
 ## build image
-* development: `docker-compose -f docker-compose.dev.yml build`
-* production: `docker-compose -f docker-compose.prod.yml build`
+* development: `docker-compose build`
+* production: `docker-compose -f docker-compose.yml -f docker-compose.prod.yml build`
 ## start container
-* development: `docker-compose -f docker-compose.dev.yml up`
-* production: `docker-compose -f docker-compose.prod.yml up`
+* development: `docker-compose up`
+* production: `docker-compose -f docker-compose.yml -f docker-compose.prod.yml up`
 ## stop container
-* development: `docker-compose -f docker-compose.dev.yml down`
-* production: `docker-compose -f docker-compose.prod.yml down`
+* development: `docker-compose down`
+* production: `docker-compose -f docker-compose.yml -f docker-compose.prod.yml down`
 
 
 # Lessons Learned
 * shared network between containers, can use service name as the host
 * add health check for backend server which relies on db status
+* support both development and production environment
+  * multiple docker compose files
+    * development: docker-compose.yml + docker-compose.override.yml
+    * production: docker-compose.yml + docker-compose.prod.yml

@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  client:
+    build:
+      context: ./client
+    depends_on:
+      - api
+    networks:
+      - webappnetwork
+  
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    depends_on:
+      - mongodb
+    ports:
+      - "9000:9000"
+    networks:
+      - webappnetwork
+
+  mongodb:
+    image: mongo
+    volumes:
+      - ./data/db:/data/db
+    ports:
+      - "27017:27017"
+    command: mongod --noauth --smallfiles
+    networks:
+      - webappnetwork
+
+networks:
+  webappnetwork:
+    driver: bridge

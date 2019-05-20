@@ -3,47 +3,23 @@ version: "3"
 services:
   client:
     build:
-      context: ./client
       dockerfile: Dockerfile.prod
     image: all-in-docker_client-prod
     restart: always
     ports:
       - "8080:8080"
-    depends_on:
-      - api
-    networks:
-      - webappnetwork
     command: ["hs"]
   
   api:
     build:
-      context: ./api
-      dockerfile: Dockerfile
       args:
         - node_env=product
     image: all-in-docker_api-prod
     restart: always
-    ports:
-      - "9000:9000"
-    volumes:
-      - ./api:/api
-      - /api/node_modules
-    depends_on:
-      - mongodb
-    networks:
-      - webappnetwork
     command: ["sh", "wait.sh", "mongodb:27017", "npm", "run", "start:prod" ]
 
   mongodb:
-    image: mongo
     restart: always
-    volumes:
-      - ./data/db:/data/db
-    ports:
-      - "27017:27017"
-    command: mongod --noauth --smallfiles
-    networks:
-      - webappnetwork
 
 networks:
   webappnetwork:
