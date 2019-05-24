@@ -23,7 +23,7 @@ services:
   mongodb:
     image: mongo
     volumes:
-      - ./data/db:/data/db
+      - mongodata:/data/db
     ports:
       - "27017:27017"
     command: mongod --noauth --smallfiles
@@ -33,3 +33,6 @@ services:
 networks:
   webappnetwork:
     driver: bridge
+
+volumes:
+  mongodata:
